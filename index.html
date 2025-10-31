@@ -1,83 +1,316 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tech - Build with the future</title>
-    <!-- css -->
-    <link rel="stylesheet" href="./css/index.css" />
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/normalize.css">
-    <!-- fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <!-- Header -->
-     <header class="header">
-      <h1 class="logo">Tech.</h1>
-      <button class="menu-btn" aria-label="Menu">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-      </button>
-     </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tech. — Build with the Future</title>
 
-     <!-- Fullscreen Mobile Menu -->
-     <nav class="mobile-menu">
-      <!-- Header in Menu -->
-      <div class="mobile-menu-header">
-        <h1 class="logo">Tech.</h1>
-        <button class="menu-close-btn">
-          <img src="./assets/images/x-close.svg" />
-        </button>
+  <!-- Font Inter -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="./css/index.css" />
+</head>
+<body>
+
+  <!-- =======================
+       HEADER / NAV
+  ======================== -->
+  <header class="site-header">
+    <div class="header-inner">
+
+      <!-- Brand -->
+      <div class="brand">Tech.</div>
+
+      <!-- Nav links (hidden on mobile, shown on tablet & desktop) -->
+      <nav class="desktop-nav">
+        <a href="#about">About</a>
+        <a href="#service">Service</a>
+        <a href="#work">Our Work</a>
+        <a href="#team">Team</a>
+        <a href="#contact" class="contact-chip">Contact Us</a>
+      </nav>
+
+      <!-- Hamburger (only mobile) -->
+      <button class="hamburger-btn" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- =======================
+       MOBILE MENU OVERLAY
+  ======================== -->
+  <aside class="mobile-menu-overlay" aria-hidden="true">
+    <div class="mobile-menu-card">
+      <div class="mobile-menu-top">
+        <div class="mobile-menu-brand">Tech.</div>
+        <button class="close-menu-btn" aria-label="Close menu">✕</button>
       </div>
 
-      <!-- Menu Content -->
-       <div class="mobile-menu-content">
-        <ul class="mobile-menu-list">
-          <li><a href="#about" class="menu-link">About</a></li>
-          <li><a href="#services" class="menu-link">Services</a></li>
-          <li><a href="#our-work" class="menu-link">Our Work</a></li>
-          <li><a href="#team" class="menu-link">Team</a></li>
-        </ul>
-        <a href="#contact" class="menu-cta-btn">Contact Us</a>
-       </div>
-     </nav>
+      <ul class="mobile-menu-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#service">Service</a></li>
+        <li><a href="#work">Our Work</a></li>
+        <li><a href="#team">Team</a></li>
+      </ul>
 
-     <!-- Hero Section -->
-      <section class="hero-section" id="home">
-        <div class="hero-content">
-          <div class="hero-text">
-            <h2>Build with the <em>Future.</em></h2>
-            <p class="hero-description">
-              From building sleek websites and mobile apps to integrating AI
-              solutions, we help brands turn ideas into powerful digital
-              experiences that connect, engage, and scale.
-            </p>
-          </div>
-          <a href="#contact" class="btn-primary">Let's Talk</a>
-        </div>
-        <div class="hero-image">
-          <img src="./assets/images/hero-hand.png" alt="Hero Image">
-        </div>
-      </section>
+      <a href="#contact" class="mobile-contact-btn">Contact Us</a>
+    </div>
+  </aside>
 
-      <!-- Who we are section -->
-       <section class="who-we-are-section" id="about"></section>
-       <h2 class="section-title">Who We Are</h2>
-       <p class="section-description">
-        We're a group of tech students trained in 
-        <em class="white-text-em">building real-world digital products.</em>
-        From coding to design, we 
-        <em class="white-text-em">craft modern solutions for modern problems.</em>
-       </p>
+  <!-- =======================
+       HERO
+  ======================== -->
+  <section class="hero-section" id="home">
+    <div class="hero-card">
 
-       <!-- JavaScript -->
-        <script src="./js/main.js"></script>
+      <!-- left text side -->
+      <div class="hero-content">
+        <h1 class="hero-title">
+          Build with the<br />
+          <span class="accent">Future.</span>
+        </h1>
+
+        <p class="hero-desc">
+          From building sleek websites and mobile apps to integrating AI
+          solutions, we help brands turn ideas into powerful digital
+          experiences that connect, engage, and scale.
+        </p>
+
+        <a class="primary-btn" href="#contact">Let's Talk</a>
+      </div>
+
+      <!-- right image side -->
+      <div class="hero-media">
+        <!-- ganti gambar sesuai file kamu -->
+        <img
+          src="./assets/images/hero-hand.png"
+          alt="Hand holding a phone with text 'Tech.'"
+        />
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =======================
+       WHO WE ARE
+  ======================== -->
+  <section class="who-we-are" id="about">
+    <h2 class="who-heading">Who We Are</h2>
+    <p class="who-desc">
+      We're a group of tech students trained in building real-world digital
+      products. From coding to design, we craft modern solutions for modern
+      problems.
+    </p>
+  </section>
+
+
+    
+      <section class="services-section">
+  <h3 class="section-heading">What We Do</h3>
+
+  <p class="services-intro">
+    We offer simple tech solutions to help your ideas grow.
+  </p>
+
+  <div class="services-grid">
+    <!-- CARD 1 -->
+    <div class="service-card">
+      <img
+        class="service-icon"
+        src="./assets/images/wwd1a.jpg"
+        alt="Web Dev Icon"
+      />
+      <h4 class="service-title">Web<br />Development</h4>
+      <p class="service-desc">
+        Modern websites using HTML, CSS, JavaScript, and frameworks.
+      </p>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="service-card">
+      <img
+        class="service-icon"
+        src="./assets/images/wwd1b.jpg"
+        alt="App Dev Icon"
+      />
+      <h4 class="service-title">App<br />Development</h4>
+      <p class="service-desc">
+        Mobile and desktop apps tailored for your needs.
+      </p>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="service-card">
+      <img
+        class="service-icon"
+        src="./assets/images/wwd2a.png"
+        alt="AI Icon"
+      />
+      <h4 class="service-title">AI Integration</h4>
+      <p class="service-desc">
+        Smart solutions using AI-powered tools and automation.
+      </p>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="service-card">
+      <img
+        class="service-icon"
+        src="./assets/images/wwd2b.png"
+        alt="UI/UX Icon"
+      />
+      <h4 class="service-title">UI/UX Design</h4>
+      <p class="service-desc">
+        Clean and functional designs for better user experience.
+      </p>
+    </div>
+
+    <!-- CARD 5 -->
+    <div class="service-card">
+      <img
+        class="service-icon"
+        src="./assets/images/wwd3a.png"
+        alt="Landing Page Icon"
+      />
+      <h4 class="service-title">
+        Landing Page<br />Design
+      </h4>
+      <p class="service-desc">
+        High-converting landing pages for your product or business.
+      </p>
+    </div>
+
+    <!-- CARD 6 -->
+    <div class="service-card">
+      <img
+        class="service-icon"
+        src="./assets/images/wwd3b.png"
+        alt="CMS Icon"
+      />
+      <h4 class="service-title">CMS<br />Integration</h4>
+      <p class="service-desc">
+        Easy-to-manage websites with WordPress or Webflow.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="our-work-section">
+  <h3 class="our-work-heading">Our Work</h3>
+  <p class="our-work-description">See what we've build we passion and purpose</p>
+  <div class="portfolio-grid">
+    <div class="portofolio-card1">
+      <img src="./assets/portfolio1.jpg" alt="">
+      <p class="portfolio-label">Portofolio 1</p>
+    </div>
+    <div class="portofolio-card2">
+      <img src="./assets/portfolio2.jpg" alt="">
+      <p class="portfolio-label">Portofolio 2</p>
+    </div>
+    <div class="portofolio-card3">
+      <img src="./assets/portfolio3.jpg" alt="">
+      <p class="portfolio-label">Portofolio 3</p>
+    </div> 
+  </div>
+</section>
+
+<section class="meettheteamsection">
+  <h3 class="meettheteamtitle">Meet the team</h3>
+  <p class="meettheteamdescription">A group of future-ready tech makers</p>
+  <div class="meettheteamgrid">
+    <!-- 1 -->
+    <div class="team-card">
+      <img src="./assets/images/jasper-kim.jpg" alt="jasper-kim" class="team-photo">
+      <h4 class="name">Jasper Kim</h4>
+      <P class="job">Project Manager</P>
+    </div>
+  
+  <!-- 2 -->
+    <div class="team-card">
+      <img src="./assets/images/alex-jonathan.jpg" alt="alex-jonathan" class="team-photo">
+      <h4 class="name">Alex Jonathan</h4>
+      <P class="job">Full-stack Developer</P>
+    </div>
+  <!-- 3 -->
+    <div class="team-card">
+      <img src="./assets/images/mario-lopez.jpg" alt="mario-lopez" class="team-photo">
+      <h4 class="name">Mario Lopez</h4>
+      <P class="job">UI/UX Designer</P>
+    </div>
+  <!-- 4 -->
+    <div class="team-card">
+      <img src="./assets/images/jasper-kim4.jpg" alt="jasper-kim4" class="team-photo">
+      <h4 class="name">Jasper Kim</h4>
+      <P class="job">Data Scientist</P>
+    </div>
+  </div>
+</section>
+
+<section class="collab-section">
+  <div class="collab-wrapper">
+    <h3 class="collab-title">Let’s Collaborate</h3>
+    <p class="collab-desc">Need a tech team? We’re ready to help</p>
+
+    <form class="collab-form">
+      <div class="form-field">
+        <label for="name">Name</label>
+        <input id="name" type="text" placeholder="Enter your name" />
+      </div>
+
+      <div class="form-field">
+        <label for="email">Email</label>
+        <input id="email" type="email" placeholder="Enter your email" />
+      </div>
+
+      <div class="form-field">
+        <label for="message">Message</label>
+        <textarea id="message" placeholder="Enter your message"></textarea>
+      </div>
+
+      <button class="send-btn" type="submit">Send</button>
+    </form>
+
+    <p class="collab-footer">© 2025 Web Programming Hack. All rights reserved.</p>
+  </div>
+</section>
+
+<!-- dummy anchors for nav -->
+  <section id="service" class="contact-anchor"></section>
+  <section id="work" class="contact-anchor"></section>
+  <section id="team" class="contact-anchor"></section>
+  <section id="contact" class="contact-anchor"></section>
+
+  <!-- Simple JS to toggle the mobile menu -->
+  
+<script>
+    const hamburgerBtn = document.querySelector(".hamburger-btn");
+    const mobileMenu = document.querySelector(".mobile-menu-overlay");
+    const closeBtn = document.querySelector(".close-menu-btn");
+    const mobileLinks = document.querySelectorAll(
+      ".mobile-menu-links a, .mobile-contact-btn"
+    );
+
+    function openMenu() {
+      mobileMenu.classList.add("open");
+      mobileMenu.setAttribute("aria-hidden", "false");
+    }
+
+    function closeMenu() {
+      mobileMenu.classList.remove("open");
+      mobileMenu.setAttribute("aria-hidden", "true");
+    }
+
+    hamburgerBtn.addEventListener("click", openMenu);
+    closeBtn.addEventListener("click", closeMenu);
+    mobileLinks.forEach(link => link.addEventListener("click", closeMenu));
+  </script>
   </body>
 </html>

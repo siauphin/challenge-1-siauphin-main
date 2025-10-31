@@ -1,318 +1,524 @@
-/* Standart Variable */
-:root {  
-    /* Color */
-    --color-black: #000000;
-    --color-white: #FFFFFF;
-    --color-neutral-25: #fdfdfd;
-    --color-neutral-500: #717680;
-    --color-neutral-800: #252b37;
-    --color-neutral-900: #1a1d27;
-    --color-primary-100: #421abc;
-
-
-    /* Spacing */
-    --spacing-sm: 6px;
-    --spacing-md: 8px;
-    --spacing-lg: 12px;
-    --spacing-xl: 16px;
-    --spacing-2xl: 20px;
-    --spacing-3xl: 24px;
-    --spacing-4xl: 32px;
-    --spacing-5xl: 40px;
-
-    /* Typography */
-    --font-weight-regular: 400;
-    --font-weight-semibold: 600;
-    --font-weight-bold: 700;
-
-    /* Font Sizes */
-    --font-size-xs: 12px;
-    --font-size-sm: 14px;
-    --font-size-md: 16px;
-    --font-size-lg: 20px;
-    --font-size-xl: 24px;
-    --font-size-2xl: 32px;
-    --font-size-3xl: 40px;
-    --font-size-4xl: 48px;
-    --font-size-5xl: 64px;
-
-    /* Line Heights */
-    --line-height-xs: 24px;
-    --line-height-sm: 28px;
-    --line-height-md: 30px;
-    --line-height-lg: 32px;
-    --line-height-xl: 36px;
-    --line-height-2xl: 38px;
-    --line-height-3xl: 48px;
-}
-
-
-/* CSS Reset & Base Styles */
+/* ==============================
+   RESET & TOKENS
+============================== */
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-html {
-    font-size: 16px;
-    scroll-behavior: smooth;
+:root {
+  /* Colors */
+  --bg-page: #000000;
+  --text-main: #ffffff;
+  --text-dim: #cfcfcf;
+
+  --card-bg-soft: rgba(10, 10, 10, 0.6);
+  --card-border: rgba(255, 255, 255, 0.08);
+
+  --primary-100: #4a28ff; /* ungu terang */
+  --primary-200: #2e1bbf; /* ungu gelap */
+
+  /* spacing */
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+
+  /* radius */
+  --radius-lg: 12px;
+  --radius-pill: 9999px;
+
+  /* font sizes (mobile first) */
+  --fs-hero: 32px;
+  --fs-body: 16px;
+  --fs-btn: 16px;
+  --fs-brand: 20px;
+
+  /* layout */
+  --header-h-mobile: 56px;
+  --page-max: 1280px;
+  --hero-max: 1200px;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: #000000;
-    color: #fdfdfd;
-    line-height: 30px;
-    max-width: 100vw;
-    overflow-x: hidden;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.4;
 }
 
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 24px 16px;
-    min-height: 64px;
-    max-width: 100%;
+/* =================================
+   HEADER
+================================= */
+
+.site-header {
+  position: relative;
+  z-index: 1000;
+  background: transparent;
+  color: var(--text-main);
+  border-bottom: none;
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #fdfdfd;
-    margin: 0;
+.header-inner {
+  height: var(--header-h-mobile);
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0 var(--sp-4);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
 }
 
-.menu-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    padding: 4px;
-    gap: 4px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    position: relative;
-    z-index: 1000;
+.brand {
+  font-size: var(--fs-brand);
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1;
 }
 
-
-.hamburger-line {
-    display: block;
-    width: 100%;
-    height: 2px;
-    background: #fdfdfd;
-    border-radius: 2px;
-    transition: all 0.3s ease;
-    border-radius: 2px;
+/* nav links - hidden on mobile first */
+.desktop-nav {
+  display: none;
+  align-items: center;
+  gap: var(--sp-4);
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
-.menu-btn.active {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+.desktop-nav a {
+  color: var(--text-main);
+  text-decoration: none;
+  opacity: 0.9;
+  line-height: 1.2;
+}
+.desktop-nav a:hover {
+  opacity: 1;
 }
 
-.menu-btn:hover .hamburger-line {
-    background-color: #fdfdfd;
+/* contact chip:
+   - hidden on mobile
+   - will sit on the far right on tablet/desktop */
+.contact-chip {
+  display: none;
+  background: var(--primary-100);
+  border-radius: var(--radius-pill);
+  padding: 6px 12px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
 }
+
+/* hamburger visible on mobile only */
+.hamburger-btn {
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+}
+
+.hamburger-btn span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--text-main);
+}
+
+/* =================================
+   MOBILE MENU OVERLAY
+================================= */
+
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--sp-8) var(--sp-4);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .25s ease;
+  z-index: 2000;
+}
+
+.mobile-menu-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* card menu */
+.mobile-menu-card {
+  background: rgba(20,20,20,0.6);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.9);
+
+  width: 100%;
+  max-width: 320px;
+
+  color: var(--text-main);
+
+  padding: var(--sp-6) var(--sp-4);
+}
+
+.mobile-menu-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--sp-8);
+}
+
+.mobile-menu-brand {
+  font-size: var(--fs-brand);
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+
+.close-menu-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* overlay nav links */
+.mobile-menu-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-8);
+}
+
+.mobile-menu-links a {
+  font-size: var(--fs-body);
+  font-weight: 500;
+  color: var(--text-main);
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+/* Contact Us button inside overlay */
+.mobile-contact-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+
+  font-size: var(--fs-btn);
+  font-weight: 600;
+  line-height: 1.2;
+  color: #fff;
+
+  padding: var(--sp-4) var(--sp-6);
+  border-radius: var(--radius-pill);
+
+  background: linear-gradient(
+    90deg,
+    var(--primary-100) 0%,
+    var(--primary-200) 100%
+  );
+  box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+}
+
+/* =================================
+   HERO SECTION
+================================= */
 
 .hero-section {
-    background: #000000;
-    padding: var(--spacing-5xl) var(--spacing-2xl);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 18px;
-    position: relative;
-    overflow: visible;
-    min-height: 720px;
+  background:
+    radial-gradient(circle at 30% 20%,
+      rgba(60,60,120,0.5) 0%,
+      rgba(0,0,0,0) 60%
+    ),
+    radial-gradient(circle at 70% 20%,
+      rgba(80,0,120,0.4) 0%,
+      rgba(0,0,0,0) 60%
+    ),
+    #000;
+  color: var(--text-main);
+
+  padding-top: var(--sp-8);
+  padding-bottom: var(--sp-8);
 }
 
-em {
-    font-style: italic;
-    display: inline-block;
-    transform: skew(-10deg);
+.hero-card {
+  max-width: var(--hero-max);
+  margin: 0 auto;
+  padding: 0 var(--sp-4);
 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-8);
 }
 
 .hero-content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-xl);
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+  max-width: 600px;
 }
 
-.hero-text {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-xl);
-    width: 100%;
+.hero-title {
+  font-size: var(--fs-hero);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--text-main);
 }
 
-.hero-description {
-    font-size: var(--font-size-md);
-    font-weight: var(--font-weight-regular);
-    line-height: var(--line-height-lg);
-    letter-spacing: -0.48px;
-    color: var(--color-neutral-500);
-    margin: 0;
+.hero-title .accent {
+  font-style: italic;
+  font-weight: 700;
 }
 
-.btn-primary {
-    background-color: var(--color-primary-100);
-    color: var(--color-white);
-    padding: var(--spacing-md);
-    border-radius: 9999px;
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-semibold);
-    line-height: var(--line-height-sm);
-    text-decoration: none;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+.hero-desc {
+  font-size: var(--fs-body);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-main);
+  opacity: 0.9;
+  max-width: 36ch;
+}
+
+/* CTA button under hero text */
+.primary-btn {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+
+  font-size: var(--fs-btn);
+  font-weight: 600;
+  line-height: 1.2;
+  color: #fff;
+  text-decoration: none;
+
+  padding: var(--sp-4) 0;
+  border-radius: var(--radius-pill);
+
+  background: linear-gradient(
+    90deg,
+    var(--primary-100) 0%,
+    var(--primary-200) 100%
+  );
+
+  box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+}
+
+.hero-media {
+  width: 100%;
+  max-width: 400px;
+}
+.hero-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* =================================
+   WHO WE ARE
+================================= */
+
+.who-we-are {
+  background-color: #000;
+  color: var(--text-main);
+  text-align: center;
+
+  max-width: var(--hero-max);
+  margin: 0 auto;
+  padding: var(--sp-10) var(--sp-4) var(--sp-10);
+}
+
+.who-heading {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: var(--sp-4);
+  color: var(--text-main);
+}
+
+.who-desc {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text-main);
+  opacity: 0.9;
+  max-width: 60ch;
+  margin: 0 auto;
+}
+
+/* anchors only so nav links scroll somewhere */
+.contact-anchor {
+  background:#000;
+  height:200px;
+}
+
+/* =================================
+   BREAKPOINTS
+================================= */
+
+/* TABLET ≥768px
+   - header jadi 3 kolom grid:
+        [brand] [nav centered] [contact chip]
+   - hamburger disembunyikan
+   - hero jadi 2 kolom
+   - hero-card punya border, radius, glow
+*/
+@media (min-width: 768px) {
+  :root {
+    --fs-hero: 40px;
+  }
+
+  .site-header {
+    background: rgba(10,10,10,0.6);
+    border-bottom: 1px solid var(--card-border);
+  }
+
+  .header-inner {
     height: 48px;
-    transition: background-color 0.3s ease;
-}
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: 0 var(--sp-4);
 
-.hero-image{
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 300px;
-    height: 420px;
-    transform: translateX(-65%);
-    z-index: 1;
-    pointer-events: none;
-}
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* kiri / tengah / kanan */
+    align-items: center;
+    column-gap: var(--sp-4);
+  }
 
-.hero-image img{
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
+  .brand {
+    font-size: 16px;
+    font-weight: 600;
+  }
 
-.mobile-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000000;
-    z-index: 999;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    overflow-y: auto;
+  /* nav muncul dan di-center */
+  .desktop-nav {
     display: flex;
-    flex-direction: column;
-}
+    justify-content: center;
+    gap: var(--sp-4);
+    font-size: 13px;
+  }
 
-.mobile-menu.active {
-    opacity: 1;
-    visibility: visible;
-}
+  /* contact chip muncul */
+  .contact-chip {
+    display: inline-block;
+    font-size: 12px;
+    padding: 6px 12px;
+    background: var(--primary-100);
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
 
-.mobile-menu-header {
-    display: flex;
+  /* hamburger hilang */
+  .hamburger-btn {
+    display: none;
+  }
+
+  /* hero card jadi 2 kolom, card style */
+  .hero-card {
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: var(--spacing-3xl) var(--spacing-xl);
-    min-height: 64px;
-    position: relative;
-    z-index: 1002;
-}
 
-.menu-close-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    left: 5px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    color: #ffffff;
-    transition: color 0.3s ease;
-    position: relative;
-    z-index: 1001;
-    flex-shrink: 0;
-}
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--card-border);
 
-.menu-close-btn:hover {
-    color: var(--color-primary-100);
-}
+    background:
+      radial-gradient(circle at 20% 20%,
+        rgba(32,32,64,0.4) 0%,
+        rgba(0,0,0,0) 60%
+      ),
+      radial-gradient(circle at 80% 20%,
+        rgba(60,0,120,0.4) 0%,
+        rgba(0,0,0,0) 60%
+      ),
+      rgba(10,10,10,0.6);
 
-.menu-close-btn:active {
-    transform: scale(0.95);
-}
+    box-shadow: 0 60px 160px rgba(0,0,0,0.9);
 
-.mobile-menu-content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding: var(--spacing-xl) var(--spacing-xl);
-    gap: var(--spacing-lg);
+    padding: var(--sp-8);
+    gap: var(--sp-8);
+  }
+
+  .hero-content {
+    flex: 1;
+    max-width: 480px;
+  }
+
+  .hero-desc {
+    max-width: 44ch;
+  }
+
+  .primary-btn {
+    max-width: 260px;
+  }
+
+  .hero-media {
+    flex: 1;
     max-width: 360px;
-    width: 100%;
+  }
 }
 
-.mobile-menu-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-lg);
-}
+/* DESKTOP ≥1024px
+   - bigger hero text
+   - larger media
+   - same header grid
+*/
+@media (min-width: 1024px) {
+  :root {
+    --fs-hero: 48px;
+  }
 
-.mobile-menu-list li {
-    width: 100%;
-}
+  .header-inner {
+    height: 40px;
+    max-width: var(--page-max);
+    padding: 0 var(--sp-4);
+  }
 
-.menu-link {
-    display: flex;
-    align-items: center;
-    height: 36px;
-    padding: var(--spacing-md) 0;
-    text-decoration: none;
-    color: var(--color-white);
-    transition: color 0.3s ease;
-}
+  .desktop-nav {
+    gap: var(--sp-6);
+    font-size: 14px;
+  }
 
-.menu-link:hover, .menu-link:active {
-    color: var(--color-primary-100);
-}
+  .hero-card {
+    max-width: var(--hero-max);
+    margin: 0 auto;
+    padding: var(--sp-8) var(--sp-8);
+  }
 
-.menu-cta-btn {
-    background-color: var(--color-primary-100);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 48px;
-    color: var(--color-white);
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-semibold);
-    line-height: var(--line-height-sm);
-    text-decoration: none;
-    border-radius: 9999px;
-    transition: background-color 0.3s ease;
-    margin-top: var(--spacing-xl);
-}
-
-.menu-cta-btn:hover {
-    background-color: #5a2dd4;
+  .hero-media {
+    max-width: 420px;
+  }
 }
 
 .who-we-are-section {
@@ -343,4 +549,763 @@ em {
 
 .white-text-em {
     color: var(--color-white);
+}
+
+* ============================
+   WHAT WE DO SECTION WRAPPER
+   ============================ */
+
+.services-section {
+  width: 100%;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: var(--spacing-5xl);        /* 40px jarak atas dari section sebelumnya */
+  text-align: center;
+  color: var(--color-white);
+  font-family: inherit;
+}
+
+/* "What We Do" heading */
+.services-section .section-heading {
+  color: var(--color-white);
+  font-size: var(--font-size-xl);        /* 24px */
+  line-height: 1.2;
+  font-weight: var(--font-weight-bold);  /* 700 */
+  margin: 0 0 var(--spacing-lg) 0;       /* bawah 12px */
+}
+
+/* subtitle abu-abu di bawah judul */
+.services-intro {
+  color: var(--color-neutral-500);       /* abu2 muda */
+  font-size: calc(var(--font-size-md) - 2px); /* kira-kira 14px */
+  line-height: 1.4;
+  font-weight: var(--font-weight-regular);
+  margin: 0 0 var(--spacing-3xl) 0;      /* bawah 24px */
+}
+
+
+/* ============================
+   GRID KARTU
+   ============================ */
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);  /* 2 kolom */
+  gap: var(--spacing-lg);                 /* 12px antar card */
+}
+
+/* tiap card kotak ungu border */
+.service-card {
+  background-color: rgba(0, 0, 0, 0.2);    /* sedikit transparan gelap */
+  border: 1px solid var(--color-neutral-500); /* #717680 */
+  border-radius: 10px;
+
+  padding: var(--spacing-2xl) var(--spacing-xl);  /* 20px atas/bawah, 16px kiri/kanan */
+  text-align: center;
+  color: var(--color-white);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-height: 220px;                      /* bikin semua kartu tingginya mirip */
+  box-sizing: border-box;
+}
+
+/* ikon ungu di atas */
+.service-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  display: block;
+  margin-bottom: var(--spacing-xl);       /* 16px bawah icon */
+}
+
+/* judul di dalam card */
+.service-title {
+  color: var(--color-white);
+  font-size: var(--font-size-md);         /* 16px */
+  line-height: 1.4;
+  font-weight: var(--font-weight-bold);   /* 700 */
+  text-align: center;
+  margin: 0 0 var(--spacing-xl) 0;        /* bawah 16px */
+}
+
+/* deskripsi di dalam card */
+.service-desc {
+  color: var(--color-neutral-500);        /* abu2 terang */
+  font-size: calc(var(--font-size-md) - 2px); /* ~14px */
+  line-height: 1.5;
+  font-weight: var(--font-weight-regular);
+  margin: 0;
+
+  text-align: center;
+  max-width: 20ch;                        /* paragraf sempit seperti Figma */
+  text-wrap: balance;
+}
+
+/* ============================
+   RESPONSIVE
+   ============================ */
+
+/* HP kecil BANGET (contoh iPhone SE) -> 1 kolom biar nggak kepotong */
+@media (max-width: 400px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Tablet / layar lebih lebar dari mobile -> boleh jadi 3 kolom (opsional) */
+@media (min-width: 640px) {
+  .services-section {
+    max-width: 720px;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-xl);               /* 16px */
+  }
+
+  .service-card {
+    min-height: 240px;
+  }
+
+  .service-desc {
+    max-width: 24ch;
+  }
+}
+
+/* Pastikan kontainer utama section tetap di tengah */
+.services-section {
+  width: 100%;
+  max-width: 420px;
+  margin: 48px auto 0 auto;
+  text-align: center; /* <--- ini penting untuk teks di dalamnya */
+  color: var(--color-white);
+  font-family: inherit;
+}
+
+/* Biar heading dan paragraf di tengah */
+.section-heading,
+.services-intro {
+  display: block;
+  text-align: center; /* pastikan benar-benar tengah */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Optional: tambahkan sedikit ruang bawah antar teks */
+.section-heading {
+  margin-bottom: var(--spacing-lg); /* 12px */
+}
+
+.services-intro {
+  margin-bottom: var(--spacing-3xl); /* 24px */
+}
+
+/* Pastikan kontainer utama section tetap di tengah */
+/* ===========================
+   OUR WORK SECTION WRAPPER
+   =========================== */
+
+.our-work-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 48px auto 0 auto;        /* tengah */
+  text-align: center;               /* heading & desc di tengah */
+  color: var(--color-white, #fff);
+  font-family: inherit;
+  padding: 0 16px;                  /* sedikit padding kiri/kanan biar aman di HP */
+}
+
+.our-work-heading {
+  margin-bottom: var(--spacing-lg, 12px);
+  color: var(--color-white, #fff);
+  font-size: var(--font-size-xl, 24px);
+  line-height: 1.2;
+  font-weight: var(--font-weight-bold, 700);
+  margin-top: 0;
+}
+
+.our-work-description {
+  color: var(--color-neutral-500, #ccc);
+  font-size: calc(var(--font-size-md, 16px) - 2px);  /* ~14px */
+  line-height: 1.5;
+  font-weight: var(--font-weight-regular, 400);
+  margin: 0 0 var(--spacing-lg, 12px) 0;
+  text-align: center;
+  text-wrap: balance;
+}
+
+
+/* ===========================
+   GRID PORTFOLIO
+   - default = DESKTOP / TABLET
+   =========================== */
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* tiga kolom sejajar */
+  gap: 24px;
+  justify-items: center;    /* center tiap card di dalam kolom */
+  align-items: start;
+  margin-top: 32px;
+
+  /* batasi lebar total agar tidak terlalu melebar layar 4k */
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* ===========================
+   CARD STYLE
+   =========================== */
+
+.portfolio-card {
+  text-align: left;
+  color: var(--color-white, #fff);
+  max-width: 380px;
+  width: 100%;
+}
+
+.portfolio-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  transition: transform 0.3s ease;
+}
+
+.portfolio-card img:hover {
+  transform: scale(1.03);
+}
+
+.portfolio-label {
+  margin-top: 12px;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--color-neutral-400, #ccc);
+  text-align: left;
+  padding-left: 8px;
+  margin-bottom: 0;
+}
+
+
+/* ===========================
+   RESPONSIVE: MOBILE
+   - di HP: 1 kolom turun kebawah
+   =========================== */
+
+@media (max-width: 768px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr; /* dari 3 kolom jadi 1 kolom */
+    gap: 24px;
+  }
+
+  .portfolio-card {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .portfolio-card img {
+    width: 100%;
+    height: auto;
+  }
+
+  .our-work-section {
+    margin-top: 32px; /* sedikit lebih rapat di HP */
+  }
+
+  .our-work-heading {
+    font-size: var(--font-size-lg, 20px); /* sedikit lebih kecil di HP */
+  }
+}
+
+.meettheteamsection {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 16px;
+  text-align: center;
+  color: #fff; /* asumsi dark background */
+}
+
+.meettheteamtitle {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.meettheteamdescription {
+  font-size: 14px;
+  line-height: 1.4;
+  color: #cfcfcf; /* abu2 terang */
+  margin: 0 auto 32px;
+  max-width: 320px;
+}
+
+/* === GRID MOBILE (2 kolom) === */
+.meettheteamgrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 kolom */
+  gap: 24px 16px; /* row-gap 24px, col-gap 16px */
+  justify-items: center; /* biar card ketengah per kolom */
+}
+
+/* === CARD === */
+.team-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 140px; /* biar gak melebar aneh di HP */
+}
+
+/* FOTO BULET */
+.team-photo {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #000; /* fallback */
+  /* optional glow? bisa ditambah nanti */
+  /* box-shadow: 0 20px 40px rgba(0,0,0,0.6); */
+  margin-bottom: 12px;
+}
+
+/* NAMA */
+.team-card .name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 4px;
+  line-height: 1.3;
+}
+
+/* JOB / ROLE */
+.team-card .job {
+  font-size: 13px;
+  line-height: 1.4;
+  color: #a0a0a0;
+  margin: 0;
+}
+@media (min-width: 768px) {
+  .meettheteamsection {
+    padding: 80px 24px;
+    text-align: center;
+  }
+
+  .meettheteamtitle {
+    font-size: 32px;
+  }
+
+  .meettheteamdescription {
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 480px;
+    margin-bottom: 48px;
+  }
+
+  /* GRID TABLET / DESKTOP: 4 kolom sejajar */
+  .meettheteamgrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+    justify-items: center; /* tengahin tiap card */
+  }
+
+  .team-card {
+    max-width: 220px;
+  }
+
+  .team-photo {
+    width: 180px;
+    height: 180px;
+    margin-bottom: 16px;
+  }
+
+  .team-card .name {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .team-card .job {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+}
+
+/* ===========================
+   LET'S COLLABORATE SECTION
+   =========================== */
+
+/* Bagian luar section */
+.collab-section {
+  width: 100%;
+  background-color: transparent;        /* biarkan ikut background halaman hitam kamu */
+  padding: 32px 16px 64px;               /* atas, sisi, bawah */
+  display: flex;
+  justify-content: center;               /* center-kan wrapper di dalam */
+}
+
+/* Card/form wrapper */
+.collab-wrapper {
+  width: 100%;
+  max-width: 480px;                      /* lebar maksimum di mobile */
+  background-color: rgba(0, 0, 0, 0.3);  /* semi transparan gelap (boleh ubah / hapus) */
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+
+  padding: 24px 16px 32px;
+  margin-left: auto;
+  margin-right: auto;
+
+  text-align: center;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+/* Judul besar */
+.collab-title {
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 8px;
+}
+
+/* Subjudul kecil di bawah judul */
+.collab-desc {
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0 0 24px;
+}
+
+/* Form container */
+.collab-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Satu blok field (label + input) */
+.form-field {
+  width: 100%;
+  text-align: left;          /* label & input rata kiri */
+  color: #fff;
+}
+
+/* Label "Name", "Email", dll */
+.form-field label {
+  display: block;
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+/* Input & textarea */
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.4;
+  padding: 12px 16px;
+  outline: none;
+  box-sizing: border-box;
+  font-family: inherit;          /* pakai font dari body (Inter) */
+}
+
+/* Textarea khusus */
+.form-field textarea {
+  min-height: 110px;
+  resize: none;                   /* jangan bisa di-drag besar kecil */
+}
+
+/* Tombol SEND */
+.send-btn {
+  width: 100%;
+  background: linear-gradient(90deg, #4a35ff 0%, #3b2ddc 100%);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-top: 8px;
+  cursor: pointer;
+  text-align: center;
+  font-family: inherit;
+}
+
+/* Copyright di bawah tombol */
+.collab-footer {
+  margin-top: 24px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+}
+
+/* ===========================
+   RESPONSIVE TABLET (>=768px)
+   =========================== */
+@media (min-width: 768px) {
+
+  .collab-section {
+    padding: 64px 24px 96px;     /* lebih lega di tablet */
+  }
+
+  .collab-wrapper {
+    max-width: 640px;            /* kartu lebih lebar */
+    padding: 32px 24px 40px;
+    border-radius: 8px;
+  }
+
+  .collab-title {
+    font-size: 28px;
+    line-height: 1.2;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .collab-desc {
+    font-size: 16px;
+    line-height: 1.4;
+    margin-bottom: 32px;
+  }
+
+  .send-btn {
+    max-width: 320px;            /* tombol nggak selebar full */
+    margin-left: auto;
+    margin-right: auto;          /* tetap center */
+  }
+}
+
+/* ===========================
+   RESPONSIVE DESKTOP (>=1024px)
+   =========================== */
+@media (min-width: 1024px) {
+
+  .collab-wrapper {
+    max-width: 720px;            /* kartu makin lebar, biar mirip figma desktop */
+  }
+
+  .collab-form {
+    gap: 20px;
+  }
+
+  .form-field label {
+    font-size: 15px;
+  }
+
+  .form-field input,
+  .form-field textarea {
+    font-size: 16px;
+  }
+}
+
+
+
+/* ====== HERO DESKTOP/TABLET LAYOUT (bagian atas gambang hp tangan) ====== */
+@media (min-width: 768px) {
+
+  /* bungkus utama hero-section */
+  .hero-section {
+    /* pastikan background tetap full width gelap seperti figma */
+    background: radial-gradient(circle at 30% 20%, #1a1d27 0%, #000000 60%);
+    /* tinggi minimal cukup besar biar tangan+hp muat */
+    min-height: 480px;
+
+    /* ini penting: konten jadi 2 kolom */
+    display: flex;
+    align-items: flex-between;      /* center secara vertikal */
+    justify-content: flex-between;  /* taruh wrapper di tengah layar */
+    padding: 64px 24px;       /* ruang atas/bawah kiri/kanan */
+  }
+
+  /* wrapper isi hero biar ada max width */
+  .hero-content {
+    width: 100%;
+    max-width: 1200px;        /* biar gak terlalu lebar di layar besar */
+    display: grid;
+    grid-template-columns: 1fr 1fr;   /* kiri teks, kanan gambar */
+    align-items: flex-between;
+    gap: 32px;
+  }
+
+  /* kolom kiri = text */
+  .hero-text {
+    max-width: 540px;         /* biar paragraf gak super panjang */
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    text-align: left;         /* override mobile yg mungkin center */
+  }
+
+  .hero-text h2 {
+    /* heading "Build with the Future." */
+    font-size: var(--font-size-2xl);   /* 32px misalnya */
+    line-height: var(--line-height-2xl); /* 36px misalnya */
+    font-weight: var(--font-weight-bold); /* 700 */
+    color: var(--color-white);
+    margin: 0;
+  }
+
+  .hero-text p {
+    color: var(--color-neutral-200, #dfdfdf);
+    font-size: var(--font-size-md);          /* 16px */
+    line-height: 1.5;
+    max-width: 480px;
+    margin: 0;
+  }
+
+  /* tombol Let's Talk */
+  .btn-primary {
+    background-color: var(--color-primary-100, #421abc);
+    color: var(--color-white, #fff);
+    border-radius: 9999px;
+    text-decoration: none;
+    text-align: center;
+
+    font-size: var(--font-size-sm, 14px);
+    font-weight: var(--font-weight-semibold, 600);
+    line-height: var(--line-height-sm, 18px);
+
+    padding: 12px 24px;
+    width: fit-content;       /* di desktop tombol ikut panjang konten aja */
+    min-width: 140px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: #5931ff; /* sedikit lebih terang pas hover */
+  }
+
+  /* kolom kanan = gambar hp */
+  .hero-image {
+    display: flex;
+    align-items: flex-between;
+    justify-content: flex-between;
+    margin-left: 200px;
+    margin-bottom: 120px;
+  }
+
+  .hero-image img {
+    max-width: 360px;     /* ukuran hp di figma kira2 segini */
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* ===== SECTION "Who We Are" setelah hero ===== */
+  .who-we-are-section {
+    background-color: #000;       /* hitam pekat beda strip dari hero */
+    text-align: center;
+    padding: 20px 10px 10px;
+    color: var(--color-white, #fff);
+    /* margin-top: 100px; */
+  }
+
+  .who-we-are-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .who-we-are-section h3 {
+    font-size: var(--font-size-xl, 24px);
+    line-height: var(--line-height-xl, 28px);
+    font-weight: var(--font-weight-bold, 700);
+    margin-top: 16px;
+    color: var(--color-white, #fff);
+    padding: 20px;
+  }
+
+  .who-we-are-section p {
+    font-size: var(--font-size-md, 16px);
+    line-height: 1.5;
+    color: var(--color-neutral-200, #dfdfdf);
+    margin: 0;
+  }
+}
+/* tombol ungu penuh seperti screenshot mobile pertama */
+  .send-btn {
+    width: 100%;
+    background: var(--color-primary-100,#4a21bc); /* ungu */
+    border-radius: 8px;
+    border: none;
+    color: var(--color-white,#fff);
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: var(--font-weight-semibold,600);
+    padding: 14px 16px;
+    margin-top: 16px;
+    transition: background-color 0.3s ease;
+  }
+
+  .send-btn:hover {
+    background-color: #5a32d8;
+  }
+
+  /* =============== 
+   SEND BUTTON (DESKTOP / TABLET DEFAULT)
+   =============== */
+.send-btn {
+  width: 100%;
+  background: transparent;               /* di desktop tombolnya transparan */
+  border: none;                          
+  color: #ffffff;                        /* teks putih "Send" */
+  font-size: 18px;                       /* kira-kira ukuran dari foto desktop */
+  line-height: 1.4;
+  font-weight: 600;
+  text-align: center;
+  padding: 24px 16px 16px;               /* ada jarak atas cukup besar sebelum teks */
+  cursor: pointer;
+}
+
+
+/* =============== 
+   MOBILE OVERRIDE 
+   versi tombol ungu bulat panjang full width
+   =============== */
+@media (max-width: 1023px) {
+  .send-btn {
+    width: 100%;
+    background: #4a21bc;                 /* ungu button di screenshot */
+    border: none;
+    border-radius: 8px;                  /* sudut rounded seperti mobile */
+    color: #ffffff;                      /* teks putih */
+    font-size: 16px;                     /* mobile sedikit lebih kecil */
+    line-height: 1.4;
+    font-weight: 600;
+    text-align: center;
+    padding: 14px 16px;                  /* tinggi kira-kira sama screenshot mobile */
+    margin-top: 16px;                    /* ada jarak atas sebelum button */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .send-btn:hover {
+    background-color: #5a32d8;           /* sedikit lebih terang saat hover (kalau di-inspect mobile mode di desktop) */
+  }
 }
